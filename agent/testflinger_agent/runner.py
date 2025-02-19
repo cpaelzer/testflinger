@@ -156,6 +156,10 @@ class CommandRunner:
 
         return self.process.returncode, stop_event, stop_reason
 
+    def run_async(self, cmd: str):
+        run_thread = threading.Thread(target=self.run, args=(cmd,))
+        run_thread.start()
+
 
 def get_stop_reason(returncode: int, stop_reason: str) -> str:
     """
